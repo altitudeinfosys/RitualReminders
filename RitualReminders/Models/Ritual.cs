@@ -25,10 +25,13 @@ namespace RitualReminders.Models
         public string UpdateUser { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        /*[Display(Name = "Ritual Frequency")]
+        
         public RitualFrequency RitualFrequency { get; set; }
+
+        [Display(Name = "Ritual Frequency")]
         public Byte RitualFrequencyId { get; set; }
 
+        /*
         public ApplicationUser Person { get; set; }
         public int UserId { get; set; }*/
 
