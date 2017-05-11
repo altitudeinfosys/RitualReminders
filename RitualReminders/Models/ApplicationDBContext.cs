@@ -14,7 +14,8 @@ namespace RitualReminders.Models
 
         
         public DbSet<Ritual> Rituals { get; set; }
-        /*public DbSet<Todo> ToDos { get; set; }
+        public DbSet<Todo> ToDos { get; set; }
+        /*
         public DbSet<Inspiration> Inspirations { get; set; }
         public DbSet<InspirationType> InspirationTypes { get; set; }
         public DbSet<RitualFrequency> RitualFrequency { get; set; }*/
