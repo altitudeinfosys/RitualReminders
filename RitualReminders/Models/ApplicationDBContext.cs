@@ -15,10 +15,14 @@ namespace RitualReminders.Models
         
         public DbSet<Ritual> Rituals { get; set; }
         public DbSet<Todo> ToDos { get; set; }
+        /*public DbSet<RitualFrequency> RitualFrequency { get; set; }
+        public DbSet<MembershipType> MembershipTypes { get; set; }
+        public DbSet<ReportType> ReportTypes { get; set; }*/
+
         /*
         public DbSet<Inspiration> Inspirations { get; set; }
         public DbSet<InspirationType> InspirationTypes { get; set; }
-        public DbSet<RitualFrequency> RitualFrequency { get; set; }*/
+        */
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
