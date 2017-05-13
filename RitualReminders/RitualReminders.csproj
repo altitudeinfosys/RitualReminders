@@ -228,10 +228,16 @@
     <Compile Include="Migrations\201705131922001_AddedMoreProfilePropertiesToApplicationUser.Designer.cs">
       <DependentUpon>201705131922001_AddedMoreProfilePropertiesToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705131957266_CreateDbContextForLookupObjects.cs" />
+    <Compile Include="Migrations\201705131957266_CreateDbContextForLookupObjects.Designer.cs">
+      <DependentUpon>201705131957266_CreateDbContextForLookupObjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Inspiration.cs" />
+    <Compile Include="Models\InspirationType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\ReportType.cs" />
@@ -338,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705131922001_AddedMoreProfilePropertiesToApplicationUser.resx">
       <DependentUpon>201705131922001_AddedMoreProfilePropertiesToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705131957266_CreateDbContextForLookupObjects.resx">
+      <DependentUpon>201705131957266_CreateDbContextForLookupObjects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
