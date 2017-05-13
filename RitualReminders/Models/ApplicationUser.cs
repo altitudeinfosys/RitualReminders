@@ -10,7 +10,7 @@ namespace RitualReminders.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        /*[Required]
+        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
@@ -25,6 +25,7 @@ namespace RitualReminders.Models
         public bool ReceiveTextMessagesReminders { get; set; }
         public bool ReceiveEmailReminders { get; set; }
 
+        /*
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
 

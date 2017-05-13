@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201705120447094_SeedUsers.Designer.cs">
       <DependentUpon>201705120447094_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705131922001_AddedMoreProfilePropertiesToApplicationUser.cs" />
+    <Compile Include="Migrations\201705131922001_AddedMoreProfilePropertiesToApplicationUser.Designer.cs">
+      <DependentUpon>201705131922001_AddedMoreProfilePropertiesToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705120447094_SeedUsers.resx">
       <DependentUpon>201705120447094_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705131922001_AddedMoreProfilePropertiesToApplicationUser.resx">
+      <DependentUpon>201705131922001_AddedMoreProfilePropertiesToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
