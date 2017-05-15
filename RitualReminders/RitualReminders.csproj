@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201705150321489_PopulateMembershipTypesData.Designer.cs">
       <DependentUpon>201705150321489_PopulateMembershipTypesData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705150350230_PopulateRitualTodoFrequenciesData.cs" />
+    <Compile Include="Migrations\201705150350230_PopulateRitualTodoFrequenciesData.Designer.cs">
+      <DependentUpon>201705150350230_PopulateRitualTodoFrequenciesData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -375,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705150321489_PopulateMembershipTypesData.resx">
       <DependentUpon>201705150321489_PopulateMembershipTypesData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150350230_PopulateRitualTodoFrequenciesData.resx">
+      <DependentUpon>201705150350230_PopulateRitualTodoFrequenciesData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
