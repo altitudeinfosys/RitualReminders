@@ -252,6 +252,22 @@
     <Compile Include="Migrations\201705150350230_PopulateRitualTodoFrequenciesData.Designer.cs">
       <DependentUpon>201705150350230_PopulateRitualTodoFrequenciesData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705150414547_AddMembershipTypeToProfileData.cs" />
+    <Compile Include="Migrations\201705150414547_AddMembershipTypeToProfileData.Designer.cs">
+      <DependentUpon>201705150414547_AddMembershipTypeToProfileData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150431529_CreateRelationshipBetweenIdentityAndToDo.cs" />
+    <Compile Include="Migrations\201705150431529_CreateRelationshipBetweenIdentityAndToDo.Designer.cs">
+      <DependentUpon>201705150431529_CreateRelationshipBetweenIdentityAndToDo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150439539_CreateRelationshipBetweenIdentityAndToDo1.cs" />
+    <Compile Include="Migrations\201705150439539_CreateRelationshipBetweenIdentityAndToDo1.Designer.cs">
+      <DependentUpon>201705150439539_CreateRelationshipBetweenIdentityAndToDo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150445043_CreateRelationshipBetweenIdentityAndToDo2.cs" />
+    <Compile Include="Migrations\201705150445043_CreateRelationshipBetweenIdentityAndToDo2.Designer.cs">
+      <DependentUpon>201705150445043_CreateRelationshipBetweenIdentityAndToDo2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -382,6 +398,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705150350230_PopulateRitualTodoFrequenciesData.resx">
       <DependentUpon>201705150350230_PopulateRitualTodoFrequenciesData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150414547_AddMembershipTypeToProfileData.resx">
+      <DependentUpon>201705150414547_AddMembershipTypeToProfileData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150431529_CreateRelationshipBetweenIdentityAndToDo.resx">
+      <DependentUpon>201705150431529_CreateRelationshipBetweenIdentityAndToDo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150439539_CreateRelationshipBetweenIdentityAndToDo1.resx">
+      <DependentUpon>201705150439539_CreateRelationshipBetweenIdentityAndToDo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150445043_CreateRelationshipBetweenIdentityAndToDo2.resx">
+      <DependentUpon>201705150445043_CreateRelationshipBetweenIdentityAndToDo2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

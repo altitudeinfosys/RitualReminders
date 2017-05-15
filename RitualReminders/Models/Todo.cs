@@ -28,6 +28,9 @@ namespace RitualReminders.Models
         [Display(Name = "Snooze ToDo")]
         public byte TodoSnoozeId { get; set; }
 
+        [Display(Name = "User")]      
+        public ApplicationUser ApplicationUser { get; set; }
+
         
 
     }

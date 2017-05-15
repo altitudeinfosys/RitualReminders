@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -28,14 +29,16 @@ namespace RitualReminders.Models
 
         public bool ReceiveEmailReminders { get; set; }
 
-        /*
         public MembershipType MembershipType { get; set; }
-        public byte MembershipTypeId { get; set; }
-        */
+        [Display(Name = "Membership Type ")]
+        public byte? MembershipTypeId { get; set; }
 
         public ReportType ReportType { get; set; }
         [Display(Name="Report Type ")]
         public byte? ReportTypeId { get; set; }
+
+        public virtual ICollection<Todo> Todos { get; set; }
+
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
