@@ -21,16 +21,21 @@ namespace RitualReminders.Models
         public DateTime? DateOfBirth { get; set; }
 
         public bool ReceiveNewsletter { get; set; }
+
         public bool ReceiveInspirationalReminders { get; set; }
+
         public bool ReceiveTextMessagesReminders { get; set; }
+
         public bool ReceiveEmailReminders { get; set; }
 
         /*
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
+        */
 
         public ReportType ReportType { get; set; }
-        public byte ReportTypeId { get; set; }*/
+        [Display(Name="Report Type ")]
+        public byte? ReportTypeId { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

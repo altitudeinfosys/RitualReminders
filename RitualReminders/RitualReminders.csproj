@@ -232,6 +232,22 @@
     <Compile Include="Migrations\201705131957266_CreateDbContextForLookupObjects.Designer.cs">
       <DependentUpon>201705131957266_CreateDbContextForLookupObjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705132022426_CreateRelationshipBetweenUserAndRerportType.cs" />
+    <Compile Include="Migrations\201705132022426_CreateRelationshipBetweenUserAndRerportType.Designer.cs">
+      <DependentUpon>201705132022426_CreateRelationshipBetweenUserAndRerportType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150310278_PopulateReportTypesData.cs" />
+    <Compile Include="Migrations\201705150310278_PopulateReportTypesData.Designer.cs">
+      <DependentUpon>201705150310278_PopulateReportTypesData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150318263_PopulateReportTypesData1.cs" />
+    <Compile Include="Migrations\201705150318263_PopulateReportTypesData1.Designer.cs">
+      <DependentUpon>201705150318263_PopulateReportTypesData1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705150321489_PopulateMembershipTypesData.cs" />
+    <Compile Include="Migrations\201705150321489_PopulateMembershipTypesData.Designer.cs">
+      <DependentUpon>201705150321489_PopulateMembershipTypesData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -347,6 +363,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705131957266_CreateDbContextForLookupObjects.resx">
       <DependentUpon>201705131957266_CreateDbContextForLookupObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705132022426_CreateRelationshipBetweenUserAndRerportType.resx">
+      <DependentUpon>201705132022426_CreateRelationshipBetweenUserAndRerportType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150310278_PopulateReportTypesData.resx">
+      <DependentUpon>201705150310278_PopulateReportTypesData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150318263_PopulateReportTypesData1.resx">
+      <DependentUpon>201705150318263_PopulateReportTypesData1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705150321489_PopulateMembershipTypesData.resx">
+      <DependentUpon>201705150321489_PopulateMembershipTypesData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
