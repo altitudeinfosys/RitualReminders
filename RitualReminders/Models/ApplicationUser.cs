@@ -39,6 +39,8 @@ namespace RitualReminders.Models
 
         public virtual ICollection<Todo> Todos { get; set; }
 
+        public virtual ICollection<Ritual> Rituals { get; set; }
+
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

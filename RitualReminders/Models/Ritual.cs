@@ -31,6 +31,9 @@ namespace RitualReminders.Models
         [Display(Name = "Ritual Frequency")]
         public Byte RitualFrequencyId { get; set; }
 
+        [Display(Name = "User")]
+        public ApplicationUser ApplicationUser { get; set; }
+
         /*
         public ApplicationUser Person { get; set; }
         public int UserId { get; set; }*/
