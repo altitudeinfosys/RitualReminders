@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using RitualReminders.Models;
 using RitualReminders.ViewModels;
 
 namespace RitualReminders.Controllers
 {
+    [Authorize]
     public class TodosController : Controller
     {
         private ApplicationDbContext _context;
+        private UserManager<ApplicationUser> manager;
 
         public TodosController()
         {
             _context = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+
         }
 
         protected override void Dispose(bool disposing)
@@ -35,7 +42,7 @@ namespace RitualReminders.Controllers
         {
 
             var snoozeTypes = _context.TodoSnoozes.ToList();
-            var viewModel = new NewTodoViewModel
+            var viewModel = new TodoViewModel
             {
                 Todo = new Todo(),
                 TodoSnoozes = snoozeTypes
@@ -45,11 +52,11 @@ namespace RitualReminders.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(Todo todo)
+        public async Task<ActionResult> Save(Todo todo)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new NewTodoViewModel()
+                var viewModel = new TodoViewModel()
                 {
                     Todo = todo,
                     TodoSnoozes = _context.TodoSnoozes.ToList()
@@ -59,28 +66,40 @@ namespace RitualReminders.Controllers
             }
 
             if (todo.ToDoId == 0)
-                _context.ToDos.Add(todo);
-            else
             {
-                var todoInDb = _context.ToDos.Single(t => t.ToDoId == todo.ToDoId);
-                todoInDb.Title = todo.Title;
-                todoInDb.DueDate = todo.DueDate;
-                todoInDb.TodoSnoozeId = todo.TodoSnoozeId;
-                todoInDb.Completed = todo.Completed;
-            }
+                var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
 
+                //var todoInDb = _context.ToDos.Single(t => t.ToDoId == todo.ToDoId);
+                /*todoInDb.Title = todo.Title;
+                todoInDb.Detail = todo.Detail;
+                todoInDb.DueDate = todo.DueDate;*/
+                todo.ApplicationUser = currentUser;
+
+                _context.ToDos.Add(todo);
+            }
+           
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Todos");
         }
 
 
-        public ViewResult Details(int id)
-
+        public ActionResult Details(int id)
         {
-            // return new List<Movie>         + var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            
+            var todo = _context.ToDos.SingleOrDefault(t => t.ToDoId == id);
 
-            return View();
+            if (todo == null)
+                return HttpNotFound();
+
+            var viewModel = new TodoViewModel
+            {
+                Todo = todo,
+                TodoSnoozes = _context.TodoSnoozes.ToList()
+            };
+
+            //return View("CustomerForm", viewModel);
+            return View("Details", viewModel);            
 
         }
 

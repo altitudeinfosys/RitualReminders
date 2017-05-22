@@ -4,7 +4,7 @@ using RitualReminders.Models;
 
 namespace RitualReminders.ViewModels
 {
-    public class NewTodoViewModel
+    public class TodoViewModel
     {
         public IEnumerable<TodoSnooze> TodoSnoozes { get; set; }
         public Todo Todo { get; set; }

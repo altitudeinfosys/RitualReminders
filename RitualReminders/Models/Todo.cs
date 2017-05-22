@@ -18,9 +18,14 @@ namespace RitualReminders.Models
         [DefaultValue(false)]
         public bool Completed { get; set; }
 
+        [Display(Name = "Further Detail")]
         public string Detail { get; set; }
 
+        [DisplayFormat(DataFormatString =
+                "{0:MM/dd/yyyy}",
+            ApplyFormatInEditMode = true)]
         public DateTime? DueDate { get; set; }
+
         public string CreateUser { get; set; }
         public DateTime? CreateDate { get; set; }
         public string UpdateUser { get; set; }
@@ -28,7 +33,7 @@ namespace RitualReminders.Models
 
         public TodoSnooze TodoSnooze { get; set; }
         [Display(Name = "Snooze ToDo")]
-        public byte TodoSnoozeId { get; set; }
+        public byte? TodoSnoozeId { get; set; }
 
         [Display(Name = "User")]      
         public ApplicationUser ApplicationUser { get; set; }

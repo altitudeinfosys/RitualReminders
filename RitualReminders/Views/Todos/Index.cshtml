@@ -16,7 +16,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
+<h2>Todos</h2>
 <p>
     @Html.ActionLink("New Todo", "New", "Todos", null, new { @class = "btn btn-primary" })
 </p>
@@ -34,7 +34,14 @@
          {
              <tr>
                  <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
-                 <td>@todo.Completed</td>
+                 <td>@if (todo.Completed == true)
+                     {
+                         <strong>Well done!</strong>
+                     }
+                     else
+                     {
+                         <p>Not YET!</p>
+                     }</td>
                  <td></td>
              </tr>
          }
