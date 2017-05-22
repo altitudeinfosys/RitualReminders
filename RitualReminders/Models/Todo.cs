@@ -18,6 +18,8 @@ namespace RitualReminders.Models
         [DefaultValue(false)]
         public bool Completed { get; set; }
 
+        public string Detail { get; set; }
+
         public DateTime? DueDate { get; set; }
         public string CreateUser { get; set; }
         public DateTime? CreateDate { get; set; }

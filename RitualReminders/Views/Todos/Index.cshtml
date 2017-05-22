@@ -29,15 +29,15 @@
         <th>Delete</th>
     </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+    @foreach (var todo in Model)
+         {
+             <tr>
+                 <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
+                 <td>@todo.Completed</td>
+                 <td></td>
+             </tr>
+         }
+    </tbody>
+
 </table>
-
-
-@foreach (var todo in Model)
-		{
-	      <tr>
-		      <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>		 
-	          <td>@todo.Completed</td>		                      
-	          <td></td>
-          </tr>
-		}

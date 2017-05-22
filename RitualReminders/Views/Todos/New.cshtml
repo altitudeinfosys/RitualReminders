@@ -1,4 +1,5 @@
-﻿@model RitualReminders.ViewModels.NewTodoViewModel
+﻿@using Microsoft.AspNet.Identity
+@model RitualReminders.ViewModels.NewTodoViewModel
 
 @{
     ViewBag.Title = "New";
@@ -29,9 +30,8 @@
         <label>
             @Html.CheckBoxFor(m => m.Todo.Completed) Completed?
         </label>
-    </div>
-   @* @Html.HiddenFor(m => m.Customer.Id)
-    @Html.AntiForgeryToken()*@
+    </div> 
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
