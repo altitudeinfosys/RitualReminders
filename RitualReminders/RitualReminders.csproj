@@ -282,6 +282,14 @@
     <Compile Include="Migrations\201705220342171_MakeSnoozeTypeNullableMeaningOptional.Designer.cs">
       <DependentUpon>201705220342171_MakeSnoozeTypeNullableMeaningOptional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705230505224_AssignedStringLengthToDoDetail.cs" />
+    <Compile Include="Migrations\201705230505224_AssignedStringLengthToDoDetail.Designer.cs">
+      <DependentUpon>201705230505224_AssignedStringLengthToDoDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705231647246_ChangingHoursInTodoSnoozesToFloat.cs" />
+    <Compile Include="Migrations\201705231647246_ChangingHoursInTodoSnoozesToFloat.Designer.cs">
+      <DependentUpon>201705231647246_ChangingHoursInTodoSnoozesToFloat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -478,6 +486,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705220342171_MakeSnoozeTypeNullableMeaningOptional.resx">
       <DependentUpon>201705220342171_MakeSnoozeTypeNullableMeaningOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705230505224_AssignedStringLengthToDoDetail.resx">
+      <DependentUpon>201705230505224_AssignedStringLengthToDoDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705231647246_ChangingHoursInTodoSnoozesToFloat.resx">
+      <DependentUpon>201705231647246_ChangingHoursInTodoSnoozesToFloat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

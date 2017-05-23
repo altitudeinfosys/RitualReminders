@@ -54,30 +54,30 @@ namespace RitualReminders.Controllers
         [HttpPost]
         public async Task<ActionResult> Save(Todo todo)
         {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new TodoViewModel()
-                {
-                    Todo = todo,
-                    TodoSnoozes = _context.TodoSnoozes.ToList()
-                };
-
-                return View("New", viewModel);
-            }
+            var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
 
             if (todo.ToDoId == 0)
             {
-                var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
-
-                //var todoInDb = _context.ToDos.Single(t => t.ToDoId == todo.ToDoId);
-                /*todoInDb.Title = todo.Title;
-                todoInDb.Detail = todo.Detail;
-                todoInDb.DueDate = todo.DueDate;*/
+                
+                todo.CreateDate = DateTime.Now;
+                todo.CreateUser = currentUser.UserName;
                 todo.ApplicationUser = currentUser;
 
-                _context.ToDos.Add(todo);
+                _context.ToDos.Add(todo); // to add to the Todos Collection 
             }
-           
+            else
+            {
+                var todoInDb = _context.ToDos.Single(t => t.ToDoId == todo.ToDoId);
+                todoInDb.Title = todo.Title;
+                todoInDb.Detail = todo.Detail;
+                todoInDb.Completed = todo.Completed;
+                todoInDb.DueDate = todo.DueDate;
+                todoInDb.TodoSnoozeId = todo.TodoSnoozeId;
+                todoInDb.UpdateDate = DateTime.Today;
+                todoInDb.UpdateUser = currentUser.UserName;
+
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Todos");

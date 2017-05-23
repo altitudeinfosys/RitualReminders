@@ -9,6 +9,6 @@ namespace RitualReminders.Models
     {
         public byte Id { get; set; }
         public string Title { get; set; }
-        public byte Hours { get; set; }
+        public float Hours { get; set; }
     }
 }

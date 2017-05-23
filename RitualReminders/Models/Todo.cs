@@ -19,6 +19,7 @@ namespace RitualReminders.Models
         public bool Completed { get; set; }
 
         [Display(Name = "Further Detail")]
+        [StringLength(255)]
         public string Detail { get; set; }
 
         [DisplayFormat(DataFormatString =
