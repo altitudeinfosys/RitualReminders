@@ -31,20 +31,33 @@
     </thead>
     <tbody>
     @foreach (var todo in Model)
-         {
-             <tr>
-                 <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
-                 <td>@if (todo.Completed == true)
-                     {
-                         <strong>Well done!</strong>
-                     }
-                     else
-                     {
-                         <p>Not YET!</p>
-                     }</td>
-                 <td></td>
-             </tr>
-         }
+    {
+        <tr>
+            <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
+            <td>@if (todo.Completed == true)
+                {
+                    <strong>Well done!</strong>
+                }
+                else
+                {
+                    <p>Not YET!</p>
+                }</td>
+            <td></td>
+        </tr>
+    }
     </tbody>
 
 </table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+
+            $('#todos').dataTable();
+
+        });
+    </script>
+}

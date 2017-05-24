@@ -52,10 +52,24 @@ namespace RitualReminders.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(Todo todo)
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
 
+            /*if (!ModelState.IsValid)
+            {
+                var snoozeTypes = _context.TodoSnoozes.ToList();
+                var viewModel = new TodoViewModel
+                {
+                    Todo = new Todo(),
+                    TodoSnoozes = snoozeTypes
+                };
+
+                return RedirectToAction("Details", "Todos");
+
+            }
+*/
             if (todo.ToDoId == 0)
             {
                 

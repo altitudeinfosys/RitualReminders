@@ -6,7 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Ritual</h2>
+<h2>New Todo</h2>
+<br/>
 
 @using (Html.BeginForm("Save", "Todos"))
 {
@@ -19,27 +20,50 @@
    
     <div class="form-group">
         @Html.LabelFor(m => m.Todo.Detail)
-        @Html.TextAreaFor(m => m.Todo.Title, new { @class = "form-control" })       
+        @Html.TextAreaFor(m => m.Todo.Detail, new { @class = "form-control" })       
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Todo.DueDate)
-        @Html.TextBoxFor(m => m.Todo.DueDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Todo.DueDate)
+        <div class='input-group date' id='datetimepicker1'>
+            @Html.LabelFor(m => m.Todo.DueDate)
+            @Html.TextBoxFor(m => m.Todo.DueDate, new { @class = "form-control",  id ="dueDate" })
+            @*<span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>*@
+            @Html.ValidationMessageFor(m => m.Todo.DueDate)
+        </div>
     </div>
-    @*<div class="checkbox">
-        <label>
-            @Html.CheckBoxFor(m => m.Todo.Completed) Completed?
-        </label>
-    </div> *@
+    
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
+@*
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
+*@
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#dueDate").datetimepicker(
+                {                    
+                    showTodayButton: true,
+                    format: 'YYYY-MM-DD HH:mm',
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'top',
+                    stepping: 15
+                });
+        });
+    </script>
+
+}
 
 
 
