@@ -12,6 +12,9 @@ namespace RitualReminders
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery-ui-1.12.1.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(                
+                "~/Scripts/jquery-ui-1.12.1.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

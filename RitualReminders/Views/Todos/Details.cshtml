@@ -27,7 +27,8 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Todo.DueDate)
-        @Html.TextBoxFor(m => m.Todo.DueDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+       @* @Html.TextBoxFor(m => m.Todo.DueDate, "{0:d MMM yyyy}", new { @class = "form-control", id = "dueDate" })*@
+        @Html.TextBoxFor(m => m.Todo.DueDate, new { @class = "form-control", id = "dueDate" })
         @Html.ValidationMessageFor(m => m.Todo.DueDate)
     </div>
     <div class="checkbox">
@@ -44,7 +45,29 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script>
+        $(document).ready(function ()
+        {
+            $("#dueDate").datetimepicker(
+                {
+                    showTodayButton: true,
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'top',
+                    stepping: 15
+                });
+        });
+    </script>*@
+
 }
+
+
+
+
+
+
+
 
 
 
