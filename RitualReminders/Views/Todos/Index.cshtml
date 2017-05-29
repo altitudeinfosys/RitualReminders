@@ -26,6 +26,8 @@
     <tr>
         <th>Title</th>
         <th>Completed</th>
+        <th>Created Date</th>
+        <th>Last Update Date</th>
         <th>Delete</th>
     </tr>
     </thead>
@@ -42,6 +44,8 @@
                 {
                     <p>Not YET!</p>
                 }</td>
+            <td>@todo.CreateDate.ToString()</td>
+            <td>@todo.UpdateDate.ToString()</td>
             <td></td>
         </tr>
     }

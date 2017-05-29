@@ -48,7 +48,8 @@ namespace RitualReminders.Controllers
                 TodoSnoozes = snoozeTypes
             };
 
-            return View(viewModel);
+            return View("TodoForm", viewModel);
+
         }
 
         [HttpPost]
@@ -57,7 +58,7 @@ namespace RitualReminders.Controllers
         {
             var currentUser = await manager.FindByIdAsync(User.Identity.GetUserId());
 
-            /*if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 var snoozeTypes = _context.TodoSnoozes.ToList();
                 var viewModel = new TodoViewModel
@@ -66,10 +67,10 @@ namespace RitualReminders.Controllers
                     TodoSnoozes = snoozeTypes
                 };
 
-                return RedirectToAction("Details", "Todos");
+                return View("TodoForm", viewModel);
 
             }
-*/
+
             if (todo.ToDoId == 0)
             {
                 
@@ -113,7 +114,7 @@ namespace RitualReminders.Controllers
             };
 
             //return View("CustomerForm", viewModel);
-            return View("Details", viewModel);            
+            return View("TodoForm", viewModel);            
 
         }
 

@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNet.Identity
+@model RitualReminders.ViewModels.TodoViewModel
+@{
+    ViewBag.Title = "TodoForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Todo.ToDoId == 0)
+{
+    <h2>New Todo</h2>
+    <br/>
+}
+else
+{
+    <h2>Edit Todo</h2>
+    <br />
+
+}
+
+@using (Html.BeginForm("Save", "Todos"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Todo.Title)
+        @Html.TextBoxFor(m => m.Todo.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Todo.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Todo.Detail)
+        @Html.TextAreaFor(m => m.Todo.Detail, new { @class = "form-control" })
+    </div>
+
+    if (Model.Todo.ToDoId != 0)
+    {     <div class="form-group">
+              @Html.LabelFor(m => m.Todo.TodoSnoozeId)
+              @Html.DropDownListFor(m => m.Todo.TodoSnoozeId, new SelectList(Model.TodoSnoozes, "Id", "Title"), "Select Snooze Type", new {@class = "form-control"})
+          </div>
+    }
+
+    
+    <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+            @Html.LabelFor(m => m.Todo.DueDate)
+            @Html.TextBoxFor(m => m.Todo.DueDate, new {@class = "form-control", id = "dueDate"})
+            @Html.ValidationMessageFor(m => m.Todo.DueDate)
+        </div>
+    </div>
+    if (Model.Todo.ToDoId == 0) 
+        { 
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.Todo.Completed) Completed?
+                </label>
+            </div> 
+        }
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Todo.ToDoId)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+     
+    @Html.ActionLink("Go Back", "Index", null, new { @class= "btn btn-info" })
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#dueDate").datetimepicker(
+                {
+                    defaultDate: '@Model.Todo.DueDate',
+                    showTodayButton: true,
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'default',
+                    stepping: 15
+                });
+        });
+    </script>
+
+}
