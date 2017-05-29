@@ -38,7 +38,7 @@
             <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
             <td>@if (todo.Completed == true)
                 {
-                    <strong>Well done!</strong>
+                    <strong>Completed - Well done!</strong>
                 }
                 else
                 {
@@ -46,7 +46,7 @@
                 }</td>
             <td>@todo.CreateDate.ToString()</td>
             <td>@todo.UpdateDate.ToString()</td>
-            <td></td>
+            <td><button class="btn-link js-delete" data-todo-id="@todo.ToDoId">Delete</button></td>
         </tr>
     }
     </tbody>
@@ -61,6 +61,26 @@
         $(document).ready(function () {
 
             $('#todos').dataTable();
+
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $('#todos .js-delete').on("click",
+                function () {
+                    alert('hello world');
+                    var button = $(this);
+                    $.ajax({
+                        url: "api/todos/" + button.attr("data-todo-id"),
+                        method: "DELETE",
+                        success: function() {
+                            console.log("Success");
+                            button.parents("tr").remove();
+                            
+                        }
+                    });
+                });
 
         });
     </script>
