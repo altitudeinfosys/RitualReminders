@@ -11,7 +11,7 @@ namespace RitualReminders.Models
     {
         public int ToDoId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Todo Title Is Required")]
         [StringLength(255)]
         public string Title { get; set; }
 
@@ -22,6 +22,8 @@ namespace RitualReminders.Models
         [StringLength(255)]
         public string Detail { get; set; }
 
+        [Required(ErrorMessage = "Your Todo Due Date Is Required")]
+        [DueDateNotInThePast]
         [DisplayFormat(DataFormatString =
                 "{0:MM/dd/yyyy}",
             ApplyFormatInEditMode = true)]

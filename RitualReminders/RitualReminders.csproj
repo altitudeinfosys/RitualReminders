@@ -300,10 +300,15 @@
     <Compile Include="Migrations\201705231652390_ModifyTodoSnoozesItems.Designer.cs">
       <DependentUpon>201705231652390_ModifyTodoSnoozesItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705310316051_MadeDueDateRequired.cs" />
+    <Compile Include="Migrations\201705310316051_MadeDueDateRequired.Designer.cs">
+      <DependentUpon>201705310316051_MadeDueDateRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\DueDateNotInThePast.cs" />
     <Compile Include="Models\Inspiration.cs" />
     <Compile Include="Models\InspirationType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -825,6 +830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705231652390_ModifyTodoSnoozesItems.resx">
       <DependentUpon>201705231652390_ModifyTodoSnoozesItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310316051_MadeDueDateRequired.resx">
+      <DependentUpon>201705310316051_MadeDueDateRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

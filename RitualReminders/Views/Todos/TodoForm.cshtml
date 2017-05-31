@@ -43,10 +43,11 @@ else
         <div class='input-group date' id='datetimepicker1'>
             @Html.LabelFor(m => m.Todo.DueDate)
             @Html.TextBoxFor(m => m.Todo.DueDate, new {@class = "form-control", id = "dueDate"})
+            <br/>
             @Html.ValidationMessageFor(m => m.Todo.DueDate)
         </div>
     </div>
-    if (Model.Todo.ToDoId == 0) 
+    if (Model.Todo.ToDoId > 0) 
         { 
             <div class="checkbox">
                 <label>
