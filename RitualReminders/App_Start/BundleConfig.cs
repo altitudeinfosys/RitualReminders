@@ -27,6 +27,7 @@ namespace RitualReminders
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/moment.js",
+                      "~/Scripts/bootbox.js",
                       "~/Scripts/bootstrap-datetimepicker.js",                      
                       "~/Scripts/DataTables/jquery.dataTables.js",
                       "~/Scripts/DataTables/dataTables.bootstrap.js"));

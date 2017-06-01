@@ -33,8 +33,9 @@ namespace RitualReminders.Controllers
         // GET: Todos
         public ViewResult Index()
         {
-            var todos = _context.ToDos.OrderBy(t => t.CreateDate).Include(t => t.TodoSnooze).ToList();
-            return View(todos);
+            //var todos = _context.ToDos.OrderBy(t => t.CreateDate).Include(t => t.TodoSnooze).ToList();
+            //return View(todos);
+            return View();
         }
 
 

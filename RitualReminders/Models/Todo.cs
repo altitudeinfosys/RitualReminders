@@ -41,7 +41,9 @@ namespace RitualReminders.Models
         [Display(Name = "User")]      
         public ApplicationUser ApplicationUser { get; set; }
 
-        
+        [DefaultValue(false)]
+        public bool Archived { get; set; }
+
 
     }
 }

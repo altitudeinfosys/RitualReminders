@@ -40,6 +40,9 @@ namespace RitualReminders.Dtos
         [Display(Name = "User")]
         public ApplicationUser ApplicationUser { get; set; }
 
+        [DefaultValue(false)]
+        public bool Archived { get; set; }
+
 
 
     }

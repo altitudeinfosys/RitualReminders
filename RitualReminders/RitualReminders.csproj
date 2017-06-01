@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201705310316051_MadeDueDateRequired.Designer.cs">
       <DependentUpon>201705310316051_MadeDueDateRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311730316_AddedArchivedFlagToTodos.cs" />
+    <Compile Include="Migrations\201705311730316_AddedArchivedFlagToTodos.Designer.cs">
+      <DependentUpon>201705311730316_AddedArchivedFlagToTodos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDBContext.cs" />
@@ -533,6 +537,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -833,6 +839,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705310316051_MadeDueDateRequired.resx">
       <DependentUpon>201705310316051_MadeDueDateRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311730316_AddedArchivedFlagToTodos.resx">
+      <DependentUpon>201705311730316_AddedArchivedFlagToTodos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

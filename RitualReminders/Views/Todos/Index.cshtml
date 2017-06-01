@@ -26,31 +26,14 @@
     <tr>
         <th>Title</th>
         <th>Completed</th>
+        <th>Due Date</th>
         <th>Created Date</th>
         <th>Last Update Date</th>
         <th>Delete</th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var todo in Model)
-    {
-        <tr>
-            <td>@Html.ActionLink(todo.Title, "Details", "Todos", new {id = todo.ToDoId}, null)</td>
-            <td>@if (todo.Completed == true)
-                {
-                    <strong>Completed - Well done!</strong>
-                }
-                else
-                {
-                    <p>Not YET!</p>
-                }</td>
-            <td>@todo.CreateDate.ToString()</td>
-            <td>@todo.UpdateDate.ToString()</td>
-            <td><button class="btn-link js-delete" data-todo-id="@todo.ToDoId">Delete</button></td>
-        </tr>
-    }
     </tbody>
-
 </table>
 
 @section scripts
@@ -58,30 +41,136 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(document).ready(function () {
-
-            $('#todos').dataTable();
-
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-
-            $('#todos .js-delete').on("click",
-                function () {
-                    alert('hello world');
-                    var button = $(this);
-                    $.ajax({
-                        url: "api/todos/" + button.attr("data-todo-id"),
-                        method: "DELETE",
-                        success: function() {
-                            console.log("Success");
-                            button.parents("tr").remove();
-                            
+        $(document).ready(function() {
+            var table = $('#todos').DataTable({
+                ajax: {
+                    url: "/api/todos",
+                    dataSrc: ""
+                },
+                columns: [
+                    { // column 1
+                        data: "title",
+                        render: function(data, type, todo) {
+                            return "<a href='/Todos/Details/" + todo.toDoId + "'>" + todo.title + "</a>";
                         }
-                    });
-                });
+                    },
+                    { // column 2
+                        data: "completed",
+                        render: function(data) {
+                            if (data)
+                                return "Well DONE!";
+                            else
+                                return "Not YET Completed!";
+                        }
+                    },
+                    {
+                        //column 4
+                        data: "dueDate",
+                        render: function(data, type, row) {
+                            // If display or filter data is requested, format the date
+                            if (type === 'display' || type === 'filter') {
+                                if (data == null)
+                                    return "";
+                                else
+                                    return "<b>" + (moment(data).format("ddd DD/MM/YYYY (HH:mm)")) + "</b>";
+                                /*var rowvalue = row["EventDate"];
+                                var rowvalueallday = row["AllDayEvent"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
 
+                                } else {
+                                    return (moment(data).format("ddd DD/MM/YYYY (HH:mm)"));
+                                }*/
+                            }
+                            // Otherwise the data type requested (`type`) is type detection or
+                            // sorting data, for which we want to use the raw date value, so just return
+                            // that, unaltered
+                            return data;
+                        }
+
+                    },
+                    {
+                        //column 4
+                        data: "createDate",
+                        render: function(data, type, row) {
+                            // If display or filter data is requested, format the date
+                            if (type === 'display' || type === 'filter') {
+                                if (data == null)
+                                    return "";
+                                else
+                                    return (moment(data).format("ddd DD/MM/YYYY (HH:mm)"));
+                                /*var rowvalue = row["EventDate"];
+                                var rowvalueallday = row["AllDayEvent"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+
+                                } else {
+                                    return (moment(data).format("ddd DD/MM/YYYY (HH:mm)"));
+                                }*/
+                            }
+                            // Otherwise the data type requested (`type`) is type detection or
+                            // sorting data, for which we want to use the raw date value, so just return
+                            // that, unaltered
+                            return data;
+                        }
+
+                    },
+                    {
+                        //column 5
+                        data: "updateDate",
+                        render: function(data, type, row) {
+                            // If display or filter data is requested, format the date
+                            if (type === 'display' || type === 'filter') {
+                                if (data == null)
+                                    return "";
+                                else
+                                    return (moment(data).format("ddd DD/MM/YYYY (HH:mm)"));
+                                /*var rowvalue = row["EventDate"];
+                                var rowvalueallday = row["AllDayEvent"];
+                                if (rowvalueallday == 0) {
+                                    return (moment(data).format("ddd DD/MM/YYYY"));
+
+                                } else {
+                                    return (moment(data).format("ddd DD/MM/YYYY (HH:mm)"));
+                                }*/
+                            }
+                            // Otherwise the data type requested (`type`) is type detection or
+                            // sorting data, for which we want to use the raw date value, so just return
+                            // that, unaltered
+                            return data;
+                        }
+
+                    },
+                    {
+                        //column 6 - to render the button 
+                        data: "todoId",
+                        render: function(data, type, todo) {
+                            return "<button class='btn-link js-delete' data-todo-id='" +
+                                todo.toDoId +
+                                "'>Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#todos").on("click",
+                ".js-delete",
+                function() {
+                    var button = $(this);
+                    var r = confirm("Press a button!");
+                    if (r) {
+                        $.ajax({
+                            url: "/api/todos/" + button.attr("data-todo-id"),
+                            method: "DELETE",
+                            success: function() {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
         });
+    
+
     </script>
+
 }
