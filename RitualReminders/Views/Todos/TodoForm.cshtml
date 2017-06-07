@@ -63,9 +63,25 @@ else
     @Html.ActionLink("Go Back", "Index", null, new { @class= "btn btn-info" })
 }
 
+
+
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @if (@Model.Todo.Completed==true)
+    {
+        <script>
+        
+            $(document).ready(function() {
+                alert('hello world');
+                $(".form-group :input").prop("disabled", true);
+            });
+
+
+        </script>
+    }
+    
 
     <script>
         $(document).ready(function ()

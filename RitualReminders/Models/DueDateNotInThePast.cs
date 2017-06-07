@@ -22,6 +22,8 @@ namespace RitualReminders.Models
 
             if (todayNow.CompareTo(todo.DueDate)<0)
                 return ValidationResult.Success;
+            else if (todo.Completed && todo.ToDoId>0)
+                return ValidationResult.Success;
             else
             {
                 return new ValidationResult("Due Date Cannot be in the past");
