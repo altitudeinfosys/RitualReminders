@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -152,27 +154,55 @@ namespace RitualReminders.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                try
                 {
-                    /*//temp code
-                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("User"));
-                    await UserManager.AddToRoleAsync(user.Id, "User");*/
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        /*//temp code
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        await roleManager.CreateAsync(new IdentityRole("User"));
+                        await UserManager.AddToRoleAsync(user.Id, "User");*/
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
+                }                
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                validationError.PropertyName,
+                                validationError.ErrorMessage);
+                        }
+                    }
                 }
-                AddErrors(result);
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
             }
 
             // If we got this far, something failed, redisplay form

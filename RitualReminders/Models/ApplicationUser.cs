@@ -13,10 +13,12 @@ namespace RitualReminders.Models
     {
         [Required]
         [StringLength(50)]
+        [Display(Name = "First Name ")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Last Name ")]
         public string LastName { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
@@ -40,6 +42,7 @@ namespace RitualReminders.Models
         public virtual ICollection<Todo> Todos { get; set; }
 
         public virtual ICollection<Ritual> Rituals { get; set; }
+
 
 
 
