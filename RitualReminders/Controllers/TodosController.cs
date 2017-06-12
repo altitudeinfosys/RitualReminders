@@ -83,11 +83,29 @@ namespace RitualReminders.Controllers
             }
             else
             {
+/*                DateTime date = DateTime.Now;
+                TimeSpan time = new TimeSpan(36, 0, 0, 0);
+                DateTime combined = date..Add(time);*/
+
                 var todoInDb = _context.ToDos.Single(t => t.ToDoId == todo.ToDoId);
+
+                if (todo.TodoSnoozeId > 0)
+                {
+                    var snoozeInfo = _context.TodoSnoozes.Single(s => s.Id == todo.TodoSnoozeId);
+                    DateTime date = DateTime.Now;
+                    DateTime snoozedTime = date.AddHours(snoozeInfo.Hours);
+                    todoInDb.DueDate = snoozedTime;
+                }
+                else
+                {
+                    todoInDb.DueDate = todo.DueDate;
+                }
+
+
+
                 todoInDb.Title = todo.Title;
                 todoInDb.Detail = todo.Detail;
-                todoInDb.Completed = todo.Completed;
-                todoInDb.DueDate = todo.DueDate;
+                todoInDb.Completed = todo.Completed;                               
                 todoInDb.TodoSnoozeId = todo.TodoSnoozeId;
                 todoInDb.UpdateDate = DateTime.Today;
                 todoInDb.UpdateUser = currentUser.UserName;
