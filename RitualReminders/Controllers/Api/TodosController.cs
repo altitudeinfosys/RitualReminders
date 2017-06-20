@@ -20,6 +20,45 @@ namespace RitualReminders.Controllers.Api
         }
 
         // GET /api/todos
+        public IHttpActionResult GetTodosByUser(string userName)
+        {
+            //var todos = _context.ToDos.ToList().Select(Mapper.Map<Todo, TodoDto>);
+
+            //var todos = _context.ToDos(Mapper.Map<Todo, TodoDto>).Where(t => t.ApplicationUser.UserName == userName);
+
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest("Invalid User Name");
+               
+               
+            }
+
+            var todosDtos = _context.ToDos.Where(t => t.ApplicationUser.UserName == userName).Select(Mapper.Map<Todo, TodoDto>);
+
+           /* todos = _context.ToDos.Where(t => t.ApplicationUser.UserName == userName);
+
+            var todosQuery = _context.ToDos.Where(t => t.ApplicationUser.UserName == userName);*/
+
+
+
+            // todosQuery = todosQuery.Select(Mapper.Map<Todo, TodoDto>).ToList();
+
+            //var todosQuery = _context.ToDos.ToList().Select(Mapper.Map<Todo, TodoDto>);
+
+            // todosQuery = todosQuery.Where(c => c.ApplicationUser.UserName.Contains(userName));
+
+            /*            var todoDtos = todosQuery
+                            .ToList()
+                            .Select();
+
+                        Ok<IEnumerable<Album>>(rockband.Albums);*/
+
+            return Ok(todosDtos);
+            
+        }
+
+        // GET /api/todos
         public IEnumerable<TodoDto> GetTodos()
         {
             return _context.ToDos.ToList().Select(Mapper.Map<Todo, TodoDto>);
@@ -51,7 +90,7 @@ namespace RitualReminders.Controllers.Api
         }
 
         // POST /api/todos
-        [HttpPost]
+        [HttpPost]       
         public IHttpActionResult Createtodo(TodoDto todoDto)
         {
             if (!ModelState.IsValid)

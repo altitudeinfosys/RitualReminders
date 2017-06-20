@@ -19,6 +19,7 @@ else
 
 @using (Html.BeginForm("Save", "Todos"))
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "Please fix the following errors.")
     <div class="form-group">
         @Html.LabelFor(m => m.Todo.Title)
@@ -54,8 +55,8 @@ else
                     @Html.CheckBoxFor(m => m.Todo.Completed , new {id="chkCompleted"}) Completed?
                 </label>
             </div> 
-        }
-    @Html.AntiForgeryToken()
+    }
+    /*@Html.AntiForgeryToken()*/
     @Html.HiddenFor(m => m.Todo.ToDoId)
 
     <button type="submit" class="btn btn-primary">Save</button>

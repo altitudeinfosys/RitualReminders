@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,12 +24,16 @@ namespace RitualReminders.Models
 
         public DateTime? DateOfBirth { get; set; }
 
+        [DefaultValue(false)]
         public bool ReceiveNewsletter { get; set; }
 
+        [DefaultValue(false)]
         public bool ReceiveInspirationalReminders { get; set; }
 
+        [DefaultValue(false)]
         public bool ReceiveTextMessagesReminders { get; set; }
 
+        [DefaultValue(false)]
         public bool ReceiveEmailReminders { get; set; }
 
         public MembershipType MembershipType { get; set; }

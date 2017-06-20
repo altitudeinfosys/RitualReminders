@@ -21,6 +21,7 @@ namespace RitualReminders.Models
         public DbSet<Inspiration> Inspirations { get; set; }
         public DbSet<InspirationType> InspirationTypes { get; set; }
         public DbSet<TodoSnooze> TodoSnoozes { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 
 

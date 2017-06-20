@@ -83,5 +83,33 @@
                     }
                 }*@
         </dd>
+        <dt>Configure Your Notification Settings:</dt>
+        <dd>
+            <p class="text-info">
+                One of the most important features is setting up your notification settings, that how you get the most out of Ritual Reminder, so that
+                you can become more productive and effective. And most importantly, get MORE DONE!
+                [ @Html.ActionLink("Your Notification Settings", "ManageNotifications") ]
+            </p>
+            @*@if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+        </dd>
     </dl>
 </div>

@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using RitualReminders.Migrations;
 using RitualReminders.Models;
+using RitualReminders.ViewModels;
 
 namespace RitualReminders.Controllers
 {
@@ -15,15 +17,19 @@ namespace RitualReminders.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        /*private ApplicationDbContext _context; // added by Tarek A 6/14/2017*/
 
         public ManageController()
         {
+            /*_context = new ApplicationDbContext(); // added by Tarek A 6/14/2017*/
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            /*_context = new ApplicationDbContext(); // added by Tarek A 6/14/2017*/
+
         }
 
         public ApplicationSignInManager SignInManager
@@ -274,7 +280,7 @@ namespace RitualReminders.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
+        }      
 
         //
         // GET: /Manage/ManageLogins
@@ -322,6 +328,72 @@ namespace RitualReminders.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        // POST: /Manage/LinkLogin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateNotifications(string provider)
+        {
+            // Request a redirect to the external login provider to link a login for the current user
+            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+        }
+
+        /********************************* added by Tarek Alaaddin - to set up the notification profile ******************/
+
+        // GET: /Manage/ManageNotifications
+        public async Task<ActionResult> ManageNotifications()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            
+
+            var viewModel = new NotificationsViewModel()
+            {
+                ReceiveEmailReminders = user.ReceiveEmailReminders,
+                ReceiveInspirationalReminders = user.ReceiveInspirationalReminders,
+                ReceiveNewsletter = user.ReceiveNewsletter,
+                ReceiveTextMessagesReminders =  user.ReceiveTextMessagesReminders
+                
+            };
+
+            //return View("CustomerForm", viewModel);
+            return View("ManageNotifications", viewModel);
+
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ManageNotifications(NotificationsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Get the current application user                
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                // Update the details
+                /*user.Name = new Name { First = model.FirstName, Last = model.LastName, Nickname = model.NickName };
+                user.Birthday = model.Birthdate;*/
+                user.ReceiveEmailReminders = model.ReceiveEmailReminders;
+                user.ReceiveInspirationalReminders = model.ReceiveInspirationalReminders;
+                user.ReceiveNewsletter = model.ReceiveNewsletter;
+                user.ReceiveTextMessagesReminders = model.ReceiveTextMessagesReminders;
+
+                // This is the part that doesn't work
+                var result = await UserManager.UpdateAsync(user);
+
+                // However, it always succeeds inspite of not updating the database
+                if (!result.Succeeded)
+                {
+                    AddErrors(result);
+                }
+            }
+
+            
+
+            return RedirectToAction("Index","Manage");
+        }
+        /***********************************************************************************************/
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -329,6 +401,8 @@ namespace RitualReminders.Controllers
                 _userManager.Dispose();
                 _userManager = null;
             }
+
+            //_context.Dispose();
 
             base.Dispose(disposing);
         }

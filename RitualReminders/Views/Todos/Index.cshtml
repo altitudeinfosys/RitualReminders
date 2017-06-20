@@ -43,11 +43,15 @@
     
 
     <script>
+        var userName = '@HttpContext.Current.User.Identity.Name';
         $(document).ready(function() {
             var table = $('#todos').DataTable({
                 ajax: {
-                    url: "/api/todos",
-                    dataSrc: ""
+                    url: "/api/todos",                    
+                    dataSrc: "",
+                    data: {
+                        "userName": userName
+                    }
                 },
                 columns: [
                     { // column 1
@@ -171,7 +175,7 @@
                     }
                 });
         });
-    
+
 
     </script>
 
