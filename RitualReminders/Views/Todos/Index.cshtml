@@ -29,7 +29,7 @@
         <th>Due Date</th>
         <th>Created Date</th>
         <th>Last Update Date</th>
-        <th>Delete</th>
+        <th>Archive</th>
     </tr>
     </thead>
     <tbody>
@@ -146,14 +146,24 @@
                             return data;
                         }
 
-                    },
+                    }/*,
                     {
                         //column 6 - to render the button 
                         data: "todoId",
-                        render: function(data, type, todo) {
+                        render: function (data, type, todo) {
                             return "<button class='btn-link js-delete' data-todo-id='" +
                                 todo.toDoId +
                                 "'>Delete</button>";
+                        }
+                    }*/
+                    ,
+                    {
+                        //column 6 - to render the Archive button 
+                        data: "todoId",
+                        render: function (data, type, todo) {
+                            return "<button class='btn-link js-archive' data-todo-id='" +
+                                todo.toDoId +
+                                "'>Archive</button>";
                         }
                     }
                 ]
@@ -170,6 +180,28 @@
                             method: "DELETE",
                             success: function() {
                                 table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+
+            $("#todos").on("click",
+                ".js-archive",
+                function () {
+                    var button = $(this);
+                    var r = confirm("You Pressed Archive!");
+                    if (r) {
+                        $.ajax({
+                            url: "/api/todos?ID=" + button.attr("data-todo-id") + "&archived=true",
+                            method: "PUT",
+                            /*data: {
+                                "": 'true'
+                            },*/
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log('Error in Operation');
                             }
                         });
                     }

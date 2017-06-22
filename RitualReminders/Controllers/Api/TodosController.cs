@@ -123,6 +123,28 @@ namespace RitualReminders.Controllers.Api
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult ArchiveTodo(int id, bool archived)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var todoInDb = _context.ToDos.SingleOrDefault(c => c.ToDoId == id);
+
+            if (todoInDb == null)
+                return NotFound();
+
+            /*Mapper.Map(todoDto, todoInDb);*/
+
+            todoInDb.Archived = archived;
+            todoInDb.UpdateDate = DateTime.Today;
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+
         // DELETE /api/todos/1
         [HttpDelete]
         public IHttpActionResult Deletetodo(int id)
